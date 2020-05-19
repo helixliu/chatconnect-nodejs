@@ -4,7 +4,7 @@
 		"encodingAESKey" : "",
 		"appid": "appid",
 		"checkSignature":false
-	}
+	},
 	"tencentocr" :{
 		"SecretId": "AKIDWyyh9PH6fsnRn3Jx99rBG5xnclYCEnAG",
 		"SecretKey": "c99b4dde849ae0ae58e2026ce5f28f1a"
