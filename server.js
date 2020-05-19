@@ -22,7 +22,12 @@ app.use('/wechatconnect',
         		    content: message.Content,
         		    type: "text"
     		    });
-            }else {
+            }else  if (message.MsgType == "image") {
+    		    res.reply({
+        		    content: message.Content,
+        		    type: "text"
+    		    });
+            }else {//image
                 res.reply({
         		    content: "hey,大哥 大哥，目前只支持文字或者图片。",
         		    type: "text"
