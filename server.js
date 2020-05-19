@@ -1,5 +1,6 @@
 //  OpenShift sample Node application
 var config = require('./config/config.json'),
+    express = require('express'),
     app     = express(),
     utils  = require('./common/utils');
     
