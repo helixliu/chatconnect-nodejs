@@ -17,14 +17,8 @@ utils.sign = function (config){
 			3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
 		*/
 		var str = [token, timestamp, nonce].sort().join('');
-		console.log(nonce);
-		console.log(timestamp);
-		console.log(nonce);
-		console.log(str);
 		var sha = sha1(str);
-		console.log(sha);
 		if (req.method == 'GET') {
- 
 			if (sha == signature) {
 				res.send(echostr+'')
 			}else{
