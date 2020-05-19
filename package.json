@@ -5,7 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.13.4",
-    "sha1":"^1.1.1"
+    "sha1":"^1.1.1",
     "wechat":"2.1.0"
   },
   "engine": {
