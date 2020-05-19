@@ -1,16 +1,20 @@
-//  OpenShift sample Node application
+//微信相关配置文件
 var config = require('./config/config.json'),
     express = require('express'),
     app     = express(),
+    //微信工具类
     wechatutils  = require('./common/wechatutils'),
     wechat = require('wechat');
 ;
 
+//tencent OCR SDK
 const tencentcloud = require("tencentcloud-sdk-nodejs");
 
     
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+//http://wechatsrv02.okdapps.njnj.me/wechatconnect
 
 app.use('/wechatconnect',wechatutils.sign(config));
 
@@ -20,11 +24,13 @@ app.use('/wechatconnect',
         function (req, res, next) {
             var message = req.weixin;
             console.log(message); 
+            //如果是接受文本消息，简单返回
             if (message.MsgType == "text") {
     		    res.reply({
         		    content: message.Content,
         		    type: "text"
     		    });
+    		    //如果是图片，尝试OCR
             }else  if (message.MsgType == "image") {
                 //用来保存OCR识别出来的文字 ； 由于tencent识别出来的是数组形式，在下面调用返回结果中我们会循环取出
             	var ocr_text = "";
