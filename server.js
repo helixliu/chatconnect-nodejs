@@ -38,7 +38,7 @@ app.use('/wechatconnect',
                 let cred = new Credential(process.env.TENCENTCLOUD_SECRET_ID, process.env.TENCENTCLOUD_SECRET_KEY);
 
                 // 实例化要请求产品(以cvm为例)的client对象
-                let client = new CvmClient(cred, "ap-hongkong");
+                let client = new ocrClient(cred, "ap-hongkong");
 
                 // 实例化一个请求对象
                 let ocrreq = new models.GeneralFastOCRRequest();
