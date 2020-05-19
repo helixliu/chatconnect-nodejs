@@ -16,9 +16,10 @@ app.use('/wechatconnect',
 	wechat(config.wechat, 
 		function (req, res, next) {
     		var message = req.weixin;
+	        console.log(message);
     		res.reply({
-        		content: message.content,
-        		type: 'text'
+        		content: "你在弄啥来。。。",
+        		type: "text"
     		});
 		}
 	)
