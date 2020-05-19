@@ -35,14 +35,5 @@ utils.sign = function (config){
 		}
 	}
 };
-
-utils.chat = wechat(config, function (req, res, next) {
-  // 微信输入信息都在req.weixin上
-  var message = req.weixin;
-      res.reply({
-      content: 'text object',
-      type: 'text'
-    });
-});
  
 module.exports = utils;
