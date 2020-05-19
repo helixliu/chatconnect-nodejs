@@ -6,6 +6,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "sha1":"^1.1.1",
+    "tencentcloud-sdk-nodejs":"^3.0.171",
     "wechat":"2.1.0"
   },
   "engine": {
