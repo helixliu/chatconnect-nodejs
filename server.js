@@ -54,7 +54,7 @@ app.use('/wechatconnect',
                     // 请求正常返回，打印response对象
                     console.log(response.to_json_string());
                     //遍历取出OCR的结果
-                    ocr_text_json = JSON.parse(response.to_json_string());
+                    var ocr_text_json = JSON.parse(response.to_json_string());
                     for(var x=0;x< ocr_text_json.TextDetections.length;x++){
                     	ocr_text = ocr_text + ocr_text_json.TextDetections[x].DetectedText;
                     }		    
