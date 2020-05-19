@@ -1,3 +1,4 @@
+//  OpenShift sample Node application
 var config = require('./config/config.json'),
     express = require('express'),
     app     = express(),
@@ -54,8 +55,12 @@ app.use('/wechatconnect',
                     console.log(response.to_json_string());
                     //遍历取出OCR的结果
                     var ocr_text_json = JSON.parse(response.to_json_string());
+                    console.log(ocr_text_json.TextDetections);
                     for(var x=0;x< ocr_text_json.TextDetections.length;x++){
                     	ocr_text = ocr_text + ocr_text_json.TextDetections[x].DetectedText;
+                    	console.log("-------");
+                    	console.log(ocr_text_json.TextDetections[x].DetectedText);
+                    	console.log(ocr_text);
                     }		    
                 });
 		    
