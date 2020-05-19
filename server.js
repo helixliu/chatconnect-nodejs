@@ -1,4 +1,3 @@
-//  OpenShift sample Node application
 var config = require('./config/config.json'),
     express = require('express'),
     app     = express(),
@@ -27,7 +26,7 @@ app.use('/wechatconnect',
     		    });
             }else  if (message.MsgType == "image") {
                 //用来保存OCR识别出来的文字 ； 由于tencent识别出来的是数组形式，在下面调用返回结果中我们会循环取出
-            	ocr_text = "";
+            	var ocr_text = "";
 		   		
                 // 导入对应产品模块的client models。
                 const ocrClient = tencentcloud.ocr.v20181119.Client;
@@ -62,7 +61,7 @@ app.use('/wechatconnect',
 		    
 		    
     		    res.reply({
-        		    content: ocr_text_json,
+        		    content: ocr_text,
         		    type: "text"
     		    });
             }else {//image
