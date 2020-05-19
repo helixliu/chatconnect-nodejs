@@ -16,10 +16,10 @@ app.use('/wechatconnect',wechatutils.sign(config));
 
 app.use(express.query());
 app.use('/wechatconnect',
-	wechat(config.wechat, 
-		function (req, res, next) {
-    		var message = req.weixin;
-	        console.log(message);
+    wechat(config.wechat, 
+        function (req, res, next) {
+            var message = req.weixin;
+            console.log(message); 
             if (message.MsgType == "text") {
     		    res.reply({
         		    content: message.Content,
@@ -42,10 +42,9 @@ app.use('/wechatconnect',
 
                 // 实例化一个请求对象
                 let ocrreq = new models.GeneralFastOCRRequest();
-
+		ocrreq.ImageUrl = message.PicUrl //发送过来的消息的url
                 // 通过client对象调用想要访问的接口，需要传入请求对象以及响应回调函数
                 client.GeneralFastOCR(ocrreq, function(err, response) {
-                    ocrreq.ImageUrl = message.PicUrl //发送过来的消息的url
                  // 请求异常返回，打印异常信息
                     if (err) {
                         console.log(err);
