@@ -59,22 +59,26 @@ app.use('/wechatconnect',
                     }
                     // 请求正常返回，打印response对象
                     console.log(response.to_json_string());
+                    /**
+                    {"TextDetections":[{"DetectedText":"忘记密码?","Confidence":99,"Polygon":[{"X":665,"Y":38},{"X":1279,"Y":46},{"X":1278,"Y":150},{"X":664,"Y":142}],"AdvancedInfo":"{\"Parag\":{\"ParagNo\":1}}","ItemPolygon":{"X":667,"Y":55,"Width":615,"Height":105}},{"DetectedText":"输入您用来登录Oracle帐户的用户名(通常为您的电子","Confidence":98,"Polygon":[{"X":230,"Y":255},{"X":1647,"Y":272},{"X":1647,"Y":320},{"X":230,"Y":303}],"AdvancedInfo":"{\"Parag\":{\"ParagNo\":2}}","ItemPolygon":{"X":235,"Y":277,"Width":1418,"Height":49}},{"DetectedText":"邮件地址)","Confidence":92,"Polygon":[{"X":830,"Y":335},{"X":1084,"Y":338},{"X":1084,"Y":378},{"X":830,"Y":375}],"AdvancedInfo":"{\"Parag\":{\"ParagNo\":3}}","ItemPolygon":{"X":836,"Y":350,"Width":255,"Height":41}},{"DetectedText":"iun. zhou@havi-cn.com","Confidence":94,"Polygon":[{"X":665,"Y":501},{"X":1338,"Y":510},{"X":1338,"Y":561},{"X":665,"Y":552}],"AdvancedInfo":"{\"Parag\":{\"ParagNo\":4}}","ItemPolygon":{"X":673,"Y":518,"Width":674,"Height":52}},{"DetectedText":"提交","Confidence":99,"Polygon":[{"X":948,"Y":665},{"X":1053,"Y":666},{"X":1053,"Y":706},{"X":948,"Y":705}],"AdvancedInfo":"{\"Parag\":{\"ParagNo\":5}}","ItemPolygon":{"X":958,"Y":678,"Width":106,"Height":41}}],"Language":"zh","Angel":0.6875,"RequestId":"1f800d29-85bc-483e-ace9-80140fff1e0b"}
+                    */
                     //遍历取出OCR的结果
                     var ocr_text_json = JSON.parse(response.to_json_string());
-                    console.log(ocr_text_json.TextDetections);
+                    //console.log(ocr_text_json.TextDetections);
                     for(var x=0;x< ocr_text_json.TextDetections.length;x++){
                     	ocr_text = ocr_text + ocr_text_json.TextDetections[x].DetectedText;
-                    	console.log("-------");
-                    	console.log(ocr_text_json.TextDetections[x].DetectedText);
-                    	console.log(ocr_text);
-                    }		    
+                    	//console.log("-------");
+                    	//console.log(ocr_text_json.TextDetections[x].DetectedText);
+                    	//console.log(ocr_text);
+                    }
+                    res.reply({
+        		    content: ocr_text,
+        		    type: "text"
+    		    });		    
                 });
 		    
 		    
-    		    res.reply({
-        		    content: ocr_text,
-        		    type: "text"
-    		    });
+    		   
             }else {//image
                 res.reply({
         		    content: "hey,大哥 大哥，目前只支持文字或者图片。",
@@ -90,3 +94,6 @@ app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
+
+
+
