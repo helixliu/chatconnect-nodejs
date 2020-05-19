@@ -1,6 +1,5 @@
 var utils = {};
 var sha1 = require('sha1');
-var wechat = require('wechat');
 
  
 //检查微信签名认证中间件
