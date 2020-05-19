@@ -26,8 +26,9 @@ app.use('/wechatconnect',
         		    type: "text"
     		    });
             }else  if (message.MsgType == "image") {
-		    
-		    
+                //用来保存OCR识别出来的文字 ； 由于tencent识别出来的是数组形式，在下面调用返回结果中我们会循环取出
+            	ocr_text = "";
+		   		
                 // 导入对应产品模块的client models。
                 const ocrClient = tencentcloud.ocr.v20181119.Client;
                 const models = tencentcloud.ocr.v20181119.Models;
@@ -52,11 +53,16 @@ app.use('/wechatconnect',
                     }
                     // 请求正常返回，打印response对象
                     console.log(response.to_json_string());
+                    //遍历取出OCR的结果
+                    ocr_text_json = JSON.parse(response.to_json_string());
+                    for(var x=0;x< ocr_text_json.TextDetections.length;x++){
+                    	ocr_text = ocr_text + ocr_text_json.TextDetections[x].DetectedText;
+                    }		    
                 });
 		    
 		    
     		    res.reply({
-        		    content: message.Content,
+        		    content: ocr_text_json,
         		    type: "text"
     		    });
             }else {//image
