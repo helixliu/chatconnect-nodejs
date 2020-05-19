@@ -6,7 +6,7 @@ var config = require('./config/config.json'),
     wechat = require('wechat');
 ;
 
-const tencentcloud = require("../../../../tencentcloud-sdk-nodejs");
+const tencentcloud = require("tencentcloud-sdk-nodejs");
 
     
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
