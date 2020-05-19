@@ -1,5 +1,7 @@
 var utils = {};
 var sha1 = require('sha1');
+var wechat = require('wechat');
+
  
 //检查微信签名认证中间件
 utils.sign = function (config){
@@ -33,5 +35,19 @@ utils.sign = function (config){
 		}
 	}
 };
+
+utils.chat = wechat(config, function (req, res, next) {
+  // 微信输入信息都在req.weixin上
+  var message = req.weixin;
+    res.reply([
+      {
+        title: '你来我家接我吧',
+        description: '这是女神与高富帅之间的对话',
+        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
+        url: 'http://nodeapi.cloudfoundry.com/'
+      }
+    ]);
+  }
+});
  
 module.exports = utils;
