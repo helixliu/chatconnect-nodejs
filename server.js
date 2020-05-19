@@ -17,10 +17,17 @@ app.use('/wechatconnect',
 		function (req, res, next) {
     		var message = req.weixin;
 	        console.log(message);
-    		res.reply({
-        		content: "你在弄啥来。。。",
-        		type: "text"
-    		});
+            if (message.MsgType == "text") {
+    		    res.reply({
+        		    content: message.Content,
+        		    type: "text"
+    		    });
+            }else {
+                res.reply({
+        		    content: "hey,大哥 大哥，目前只支持文字或者图片。",
+        		    type: "text"
+    		    });
+            }
 		}
 	)
 );
