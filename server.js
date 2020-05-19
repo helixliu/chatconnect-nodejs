@@ -50,6 +50,7 @@ app.use('/wechatconnect',
                 // 实例化一个请求对象
                 let ocrreq = new models.GeneralFastOCRRequest();
 		ocrreq.ImageUrl = message.PicUrl //发送过来的消息的url
+		ocrreq.LanguageType = "kor";
                 // 通过client对象调用想要访问的接口，需要传入请求对象以及响应回调函数
                 //client.GeneralFastOCR(ocrreq, function(err, response) {
 		client.GeneralBasicOCR(ocrreq, function(err, response) {    
