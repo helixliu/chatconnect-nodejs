@@ -12,13 +12,17 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 app.use('/wechatconnect',wechatutils.sign(config));
 
 app.use(express.query());
-app.use('/wechatconnect',wechat(config.wechat, function (req, res, next) {
-    var message = req.weixin;
-    res.reply({
-        content: message.content,
-        type: 'text'
-    });
-});
+app.use('/wechatconnect',
+	wechat(config.wechat, 
+		function (req, res, next) {
+    		var message = req.weixin;
+    		res.reply({
+        		content: message.content,
+        		type: 'text'
+    		});
+		}
+	)
+);
 
 
 app.listen(port, ip);
