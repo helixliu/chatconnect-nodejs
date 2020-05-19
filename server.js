@@ -51,7 +51,8 @@ app.use('/wechatconnect',
                 let ocrreq = new models.GeneralFastOCRRequest();
 		ocrreq.ImageUrl = message.PicUrl //发送过来的消息的url
                 // 通过client对象调用想要访问的接口，需要传入请求对象以及响应回调函数
-                client.GeneralFastOCR(ocrreq, function(err, response) {
+                //client.GeneralFastOCR(ocrreq, function(err, response) {
+		client.GeneralBasicOCR(ocrreq, function(err, response) {    
                  // 请求异常返回，打印异常信息
                     if (err) {
                         console.log(err);
@@ -64,7 +65,8 @@ app.use('/wechatconnect',
                     */
                     //遍历取出OCR的结果
                     var ocr_text_json = JSON.parse(response.to_json_string());
-                    //console.log(ocr_text_json.TextDetections);
+		    ocr_text = ocr_text + "【" + ocr_text_json.Language + "】" ;
+                    //console.log(ocr_text_json.TextDetections);  //
                     for(var x=0;x< ocr_text_json.TextDetections.length;x++){
                     	ocr_text = ocr_text + ocr_text_json.TextDetections[x].DetectedText;
                     	//console.log("-------");
